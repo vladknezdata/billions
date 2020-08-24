@@ -21,6 +21,7 @@ class CharacterAdmin(admin.ModelAdmin):
 
 @admin.register(Reference)
 class ReferenceAdmin(admin.ModelAdmin):
-    list_display = ['season', 'episode', 'category', 'title',
-                    'time', 'image', 'dialog', 'explanation']
+    list_display = ['id', 'season', 'episode', 'category', 'title',
+                    'slug', 'time', 'image', 'dialog', 'explanation']
     list_filter = ['season', 'episode', 'characters', 'category']
+    filter_horizontal = ('characters',)

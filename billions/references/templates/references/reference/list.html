@@ -1,0 +1,17 @@
+{% extends 'references/base.html' %}
+{% load static %}
+
+{% block title %}Reference list{% endblock %}
+
+{% block content %}
+    {% for reference in references %}
+        <div>
+            <a href="#">Season {{ reference.season }},</a>
+            <a href="#">Episode {{ reference.episode }} :</a>
+            {% for character in reference.faces %}
+            <a href="#"{{ character.aka }}</a>
+        {% endfor %}
+        <a href="{% url 'references:detail_view' reference.slug %}">{{ reference.title }}</a>
+        </div>
+    {% endfor %}
+{% endblock %}

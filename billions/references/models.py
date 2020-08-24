@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 class Season(models.Model):
     number = models.IntegerField()
@@ -55,10 +56,17 @@ class Reference(models.Model):
                                  blank=True,
                                  on_delete=models.SET_NULL)
     title = models.CharField(max_length=50)
+    slug = models.SlugField(max_length=100,
+                           blank=True)
     time = models.TimeField()
     image = models.ImageField(blank=True)
     dialog = models.TextField(max_length=500)
     explanation = models.TextField(max_length=1500)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title
