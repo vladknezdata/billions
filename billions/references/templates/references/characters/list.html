@@ -1,0 +1,21 @@
+{% extends 'references/base.html' %}
+{% load static %}
+
+{% block title %}Characters{% endblock %}
+
+{% block content %}
+    <h1>Characters</h1>
+    <div class="row row-cols-1 row-cols-md-3">
+        {% for character in characters %}
+            <div class="col mb-4">
+                <img src="" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ character.aka }}</h5>
+                    <p>{{ character.name }}</p>
+                    <p class="card-text"><a href="{{ character.imdb_link }}" target="_blank" >{{ character.actor }}</a></p>
+                    <p class="card-text"><small class="text-muted"><a href="{% url 'references:list_view_by_tag' character.slug %}">References</a></small></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

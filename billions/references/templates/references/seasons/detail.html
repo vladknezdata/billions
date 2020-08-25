@@ -1,0 +1,20 @@
+{% extends 'references/base.html' %}
+{% load static %}
+
+{% block title %}Season {{ season.number }}{% endblock %}
+
+{% block content %}
+    <h1> Season {{ season.number }}</h1>
+    <div class="card-group">
+        {% for episode in episodes %}
+            <div class="card">
+                <a href="#"><img src="..." class="card-img-top" alt="..."></a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ episode.title }}</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <a href="#"><p class="card-text"><small class="text-muted"><a href="{% url 'references:list_view_by_episode' episode.number %}">References</small></p></a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

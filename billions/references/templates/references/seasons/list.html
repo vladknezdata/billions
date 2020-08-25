@@ -1,0 +1,24 @@
+{% extends 'references/base.html' %}
+{% load static %}
+
+{% block title %}Seasons{% endblock %}
+
+{% block content %}
+    <h1>Seasons</h1>
+    {% for season in seasons %}
+        {{ season.number }}
+        <div class="card mb-3">
+            <img src="" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Season {{ season.number }}</h5>
+                <p class="card-text">{{ season.year }}</p>
+                <p class="card-text"><small class="text-muted"><a href="{% url 'references:season_view' season.number %}">Episodes</a></small></p>
+            </div>
+        </div>
+
+
+
+
+    {% endfor %}
+
+{% endblock %}

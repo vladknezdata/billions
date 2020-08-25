@@ -1,0 +1,16 @@
+{% extends 'references/base.html' %}
+{% load static %}
+
+{% block title %}Episodes
+    {% if season_number %}
+        Season {{ season_number }}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h1>Episodes
+    {% if season_number %}
+        Season {{ season_number }}
+    {% endif %}
+    </h1>
+{% endblock %}

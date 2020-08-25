@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from taggit.managers import TaggableManager
 
 class Season(models.Model):
     number = models.IntegerField()
@@ -10,7 +11,7 @@ class Season(models.Model):
         return str(self.number)
 
     class Meta:
-        ordering = ['number']
+        ordering = ['-number']
 
 
 class Episode(models.Model):
@@ -37,12 +38,21 @@ class ReferenceCategory(models.Model):
 class Character(models.Model):
     name = models.CharField(max_length=50)
     aka = models.CharField(max_length=25)
+    slug = models.SlugField(max_length=25,
+                            blank=True)
     img_small = models.ImageField(blank=True)
     img_large = models.ImageField(blank=True)
     actor = models.CharField(max_length=50)
+    imdb_link = models.URLField(max_length=200,
+                                blank=True)
 
     def __str__(self):
         return self.aka
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.aka)
+        super().save(*args, **kwargs)
 
 
 class Reference(models.Model):
@@ -60,8 +70,9 @@ class Reference(models.Model):
                            blank=True)
     time = models.TimeField()
     image = models.ImageField(blank=True)
-    dialog = models.TextField(max_length=500)
-    explanation = models.TextField(max_length=1500)
+    dialog = models.TextField(max_length=1000)
+    explanation = models.TextField(max_length=2000)
+    tags = TaggableManager(blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
