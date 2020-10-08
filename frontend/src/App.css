@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+
+}
+
+.reference {
+  background-image: linear-gradient(white, rgb(189, 245, 142));
+  text-align: left;
+  padding: 20px;
+  border-bottom: 2px solid black;
+  
+}
+.dialog {
+  font-family: "Courier New";
+}
+.blog-header-logo {
+  font-size: 50px;
+  font-family: 'Courier New', Courier, monospace;
+}
+
